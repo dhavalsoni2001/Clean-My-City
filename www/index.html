@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SuvarnaKrupa</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="css/font-awesome.css"/>
+    <link rel="stylesheet" href="css/jquery.mobile.css"/>
+    <link rel="stylesheet" href="css/waves.min.css"/>
+    <link rel="stylesheet" href="css/animate.css"/>
+    <link rel="stylesheet" href="css/nativedroid2.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <script src="js/jQuery.js"></script>
+    <script src="js/jQuery-ui.js"></script>
+    <script src="js/jquery.mobile.js"></script>
+    
+    <script src="js/waves.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/nativedroid2.js"></script>
+    <script src="js/nd2settings.js"></script>
+                <script type="text/javascript" src="js/index.js"></script>
+                	         <script type="text/javascript" src="cordova.js"></script>
+                
+    
+<script>
+$(document).on("pageshow", "#pickup", function () {
+            $("#waste_type-button").css("display","none");
+            $("#collectible_type-button").css("display","block");
+            $("#question").css("display","block");
+});
+$(document).on("pageshow", "#status", function () {
+	alert("A");
+	/*<li>
+    <a href="#" class="ui-btn waves-effect waves-button waves-effect waves-button">
+        <h2>Ethel Chancy</h2>
+        <p>ehtel.chancy@example.com</p>
+        <p class="ui-li-aside">12-01-1945</p>
+    </a>
+</li>*/
+	$.get("http://172.16.1.18/cleancityapp/services/viewstatus",{id:localStorage.getItem("Id")},function(data){
+		$("#statusList").html("");
+	$(data).each(function(k,i){
+		$("#statusList").append('<li><a href="#" class="ui-btn waves-effect waves-button waves-effect waves-button">'+
+	       '<h2>'+i.Title+'</h2>'+
+         '<p>'+i.status+'</p>'+
+        '<p class="ui-li-aside">'+i.start_date+'</p></a></li>');
+	})
+	$("#statusList").listview('refresh');
+	});
+});
+          
+</script>
+
+    <script>
+    $(document).on("pagebeforeshow", "#raise", function () {
+        $("#image_container").html('<div class="col-xs-4">        <a href="#raise" style="text-decoration: none;color: #454545" id="takeImage">                    <div class="box" style="text-align:center;font-size: xx-large" >                    <i class="zmdi zmdi-camera"></i>                    </div>                    <div class="box">                    Take image            </div>            </a>            </div>            <div class="col-xs-5">                    <a href="#pickup" style="text-decoration: none;color: #454545" id="gallaryImage">                    <div class="box" style="text-align:center;font-size: xx-large">                    <i class="zmdi zmdi-image"></i>                    </div>                    <div class="box">                    Select From Gellery            </div>            </a>            </div>');
+
+    });
+
+        $(document).on("pageinit", "#index", function () {
+        	
+        	if (localStorage.getItem("Id") === null) {
+        		
+        	}
+        	else{
+        		$(':mobile-pagecontainer').pagecontainer('change', '#dashboard', {
+        	        transition: 'fade',
+        	    });
+        		
+        	}
+        });
+        $(document).on("pageshow", "#index", function () {
+
+        });
+
+    </script>
+
+</head>
+<body>
+<div data-role="page" id="index">
+    <div data-role="header" data-position="fixed" class="wow fadeIn">
+        <h1 class="wow fadeIn">Clean My City</h1>
+    </div>
+    <div role="main" class="ui-content wow fadeIn"  data-wow-delay="0.2s" data-inset="false">
+        <div class="row center-xs">
+            <img src="./images/clean-india-logo-hindi.jpg" style="width: 100%;height:20%;">
+        </div>
+        <br>
+        <input type="text" placeholder="Mobile Nomber"/>
+        <input type="password" placeholder="Password"/>
+        <br>
+
+        <div class="row center-xs middle-xs">
+            <div class="col-xs-6">
+                <div class="box">
+                    <button class="ui-btn clr-btn-red">Login</button>
+                </div>
+            </div>
+        </div>
+        <div class="row center-xs">
+            <div class="col-xs-6">
+                <div class="box">
+                    OR
+                </div>
+            </div>
+        </div>
+        <div class="row center-xs">
+            <div class="col-xs-6">
+                <div class="box">
+                    <a href="#Register" class="ui-btn clr-btn-blue">Register</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div data-role="page" id="Register">
+    <div data-role="header" data-position="fixed" class="wow fadeIn">
+        <a class="ui-btn-left ui-btn waves-effect waves-button waves-effect waves-button" href="#index" data-role="button" role="button"><i class="zmdi zmdi-arrow-back"></i></a>
+        <h1 class="wow fadeIn">Clean My City</h1>
+    </div>
+    <div role="main" class="ui-content wow fadeIn"  data-wow-delay="0.2s" data-inset="false">
+        <input type="text" id="name" placeholder="Name"/>
+        <input type="text" id="phoneNumber" placeholder="Mobile Nomber"/>
+        <input type="text" id="email" placeholder="Email"/>
+        <input type="password" id="password" placeholder="Password"/>
+        
+<fieldset data-role="controlgroup">
+    <legend>Gender</legend>
+                <input name="radio-choice-1" id="radio-choice-1" class="radioBackground" value="f" checked="checked" type="radio">
+        <label for="radio-choice-1" class="radioBackground">Female</label>
+        <input name="radio-choice-1" id="radio-choice-2" value="m" type="radio" class="radioBackground">
+        <label for="radio-choice-2" class="radioBackground">Male</label>
+	
+	
+</fieldset>
+        <select data-native-menu="false" id="select-choice-1b" name="select-choice-1" tabindex="-1">
+            <option value="">Select Identity Proof</option>
+            <option value="adhar">Aadhar Card</option>
+            <option value="licence">Licence Number</option>
+            <option value="voter">Voter ID</option>
+        </select>
+        <input type="text" placeholder="Identity Proof Number" id="proofNumber"/>
+        <br>
+        <div class="row center-xs">
+            <div class="col-xs-6">
+                <div class="box">
+                    <button class="ui-btn clr-btn-blue" id="registrationSubmit">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-role="page" id="dashboard">
+    <div data-role="header" data-position="fixed" class="wow fadeIn">
+        <h1 class="wow fadeIn">Clean My City</h1>
+    </div>
+    <div class="ui-content" role="page" style="padding:11em 1em">
+        <div class="row around-xs center-xs">
+            <div class="col-xs-4">
+                <a href="#raise" style="text-decoration: none;color: #454545">
+                    <div class="box" style="text-align:center;font-size: xx-large">
+                        <i class="zmdi zmdi-alert-circle-o zmdi-hc-3x"></i>
+                    </div>
+                    <div class="box" id="raiseIssue">
+                        Raise Issue
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-5" >
+                <a href="#pickup" style="text-decoration: none;color: #454545">
+                    <div class="box" style="text-align:center;font-size: xx-large">
+                        <i class="zmdi zmdi-shopping-basket zmdi-hc-3x"></i>
+                    </div>
+                    <div class="box">
+                        Request Pickup
+                    </div>
+                </a>
+            </div>
+        </div>
+        <br>
+
+        <div class="row around-xs center-xs">
+            <div class="col-xs-4">
+                <a href="#status" style="text-decoration: none;color: #454545">
+                    <div class="box" style="text-align:center;font-size: xx-large">
+                        <i class="zmdi zmdi-check zmdi-hc-3x"></i>
+                    </div>
+                    <div class="box">
+                        Status
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-5">
+                <a href="#settings" style="text-decoration: none;color: #454545">
+                    <div class="box" style="text-align:center;font-size: xx-large">
+                        <i class="zmdi zmdi-settings zmdi-hc-3x"></i>
+                    </div>
+                    <div class="box">
+                        Settings
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div data-role="page" id="raise">
+    <div data-role="header" data-position="fixed" class="wow fadeIn">
+        <a class="ui-btn-left ui-btn waves-effect waves-button waves-effect waves-button" data-rel="back"
+           data-role="button" role="button"><i class="zmdi zmdi-arrow-back"></i></a>
+
+        <h1 class="wow fadeIn">Raise a issue</h1>
+    </div>
+
+    <div role="page" class="ui-content">
+
+        <div id="popupDialog" data-role="popup" class="ui-popup ui-body-inherit ui-overlay-shadow ui-corner-all">
+
+            <div data-role="header" role="banner" class="ui-header ui-bar-inherit">
+                <h1 class="nd-title ui-title" role="heading" aria-level="1">Delete from library?</h1>
+            </div>
+
+            <div data-role="content" class="ui-content" role="main">
+                <p>Do you want to share?</p>
+                <a class="ui-btn-primary ui-btn waves-effect waves-button waves-effect waves-button shareIcon"
+                   data-inline="true" data-role="button" data-rel="back" href="dialog/index.html" role="button"><i
+                        class="zmdi zmdi-check"></i> Yes</a>
+                <a class="ui-btn-primary ui-btn waves-effect waves-button waves-effect waves-button"
+                   data-inline="true" data-role="button" data-rel="back" href="dialog/index.html" role="button"><i
+                        class="zmdi zmdi-cancel"></i> Cancel</a>
+
+            </div>
+        </div>
+
+        <div class="row around-xs center-xs" id="image_container">
+            <div class="col-xs-4">
+                <a href="#raise" style="text-decoration: none;color: #454545" id="takeImage">
+                    <div class="box" style="text-align:center;font-size: xx-large">
+                        <i class="zmdi zmdi-camera"></i>
+                    </div>
+                    <div class="box" >
+                        Take image
+                    </div>
+                </a>
+            </div>
+            <div class="col-xs-5">
+            
+                <a href="#pickup" style="text-decoration: none;color: #454545" id="gallaryImage">
+                    <div class="box" style="text-align:center;font-size: xx-large">
+                        <i class="zmdi zmdi-image"></i>
+                    </div>
+                    <div class="box" >
+          
+                        Select From Gellery
+                    </div>
+                </a>
+            </div>
+            
+        </div>
+        
+        <br>
+                                                                      <input type="file" id="filefromGallary" style="display:none;"></input>
+        
+        <br>
+        <input type="text" placeholder="Issue Title" id="issueTitle">
+        <textarea placeholder="Description" style="resize: none" rows="6" data-autogrow="false" id="issueDescription"></textarea>
+        
+        <button class="ui-btn clr-btn-blue ui-btn-inline" id="raiseSubmit">Raise</button>
+    </div>
+
+</div>
+<div data-role="page" id="pickup">
+    <div data-role="header" data-position="fixed" class="wow fadeIn">
+        <a class="ui-btn-left ui-btn waves-effect waves-button waves-effect waves-button" data-rel="back"
+           data-role="button" role="button"><i class="zmdi zmdi-arrow-back"></i></a>
+
+        <h1 class="wow fadeIn">Request a Pickup</h1>
+    </div>
+
+    <div role="mian" class="ui-content">
+        <fieldset data-role="controlgroup">
+            <legend>Please Select from below:</legend>
+            <input name="radio-choiceInner-3" id="collectibles" value="collectibles" checked="checked" type="radio">
+            <label  for="collectibles">Collectibles</label>
+            <input name="radio-choiceInner-3" id="waste" value="waste" type="radio">
+            <label for="waste">Waste</label>
+        </fieldset>
+   
+	
+    
+        <div id="container">
+            <select data-native-menu="false" id="collectible_type" name="select-choice-1" tabindex="-1">
+                <option value="">Select type of collactible</option>
+                <option value="electronic">Electronic Accessories</option>
+                <option value="clothes">Clothes</option>
+                <option value="books">Books</option>
+            </select>
+            <select data-native-menu="false" id="waste_type" name="select-choice-1" tabindex="-1" style="display:none">
+                <option value="">Select type of waste</option>
+                <option value="dry">Dry waste</option>
+                <option value="wet">Wet waste</option>
+                <option value="hazards">Hazards Waste</option>
+                <option value="orgnic">Organic waste</option>
+            </select>
+
+            <textarea id="notes" placeholder="Notes" data-autogrow="false" style="resize: none" rows="4"></textarea>
+            <label for="question" id="question_label">Please give a Reason:</label>
+            <input type="text" id="question" placeholder="Reason">
+            <textarea placeholder="Address" id="address" data-autogrow="false" style="resize: none" rows="4"></textarea>
+        </div>
+        <button class="ui-btn clr-btn-red ui-btn-inline" id="requestPickup">Request Pickup</button>
+    </div>
+</div>
+<div data-role="page" id="status">
+    <div data-role="header" data-position="fixed" class="wow fadeIn">
+        <a class="ui-btn-left ui-btn waves-effect waves-button waves-effect waves-button" data-rel="back"
+           data-role="button" role="button"><i class="zmdi zmdi-arrow-back"></i></a>
+
+        <h1 class="wow fadeIn">Request/Issue Status</h1>
+    </div>
+
+    <div role="main" class="ui-content">
+        <ul data-icon="false" data-role="listview" class="ui-listview" id="statusList">
+            
+        </ul>
+
+
+    </div>
+</div>
+<div data-role="page" id="settings">
+    <div data-role="header" data-position="fixed" class="wow fadeIn">
+        <a class="ui-btn-left ui-btn waves-effect waves-button waves-effect waves-button" data-rel="back"
+           data-role="button" role="button"><i class="zmdi zmdi-arrow-back"></i></a>
+
+        <h1 class="wow fadeIn">Settings</h1>
+    </div>
+
+    <div role="main" class="ui-content">
+        <label for="address_tb">Default Resident address</label>
+        <textarea placeholder="Address" id="address_tb" style="resize: none" rows="6"></textarea>
+        <button class="ui-btn clr-btn-red ui-btn-inline" id="updateAddress">Update</button>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+#index .ui-content,#index,#Register, #Register .ui-content{
+    padding-top: 3em;
+    background-color: #f7f7f7;
+}
+input{
+    background-color: transparent;
+}
+div.ui-input-text{
+    background-color: transparent !important;
+}
+
+.radioBackground{
+	background-color: #F7F7F7 !important;
+}

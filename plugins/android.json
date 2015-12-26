@@ -1,0 +1,30 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.myPackage"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.myPackage"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.myPackage"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.myPackage"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.myPackage"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.myPackage"
+        }
+    },
+    "dependent_plugins": {}
+}
